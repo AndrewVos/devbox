@@ -39,10 +39,21 @@ class vim {
     command => "/usr/bin/curl -s -o /home/vagrant/.vimrc https://raw.github.com/AndrewVos/vimfiles/master/.vimrc"
   }
 
-  exec{ "vundle":
+  exec{ "clone-vundle":
     command => "/usr/bin/git clone http://github.com/gmarik/vundle.git /home/vagrant/.vim/bundle/vundle",
     creates => "/home/vagrant/.vim/bundle/vundle/README.md",
     require => Package["git"]
+  }
+
+  exec{ "vundle-bundle-install":
+    command => "/usr/bin/vim -c :BundleInstall -c :q -c :q",
+    require => Exec["clone-vundle"]
+  }
+
+  exec{ "compile-command-t":
+    cwd => "/home/vagrant/.vim/bundle/Command-T/ruby/command-t",
+    command => "/usr/bin/ruby extconf.rb && make",
+    require => Exec["vundle-bundle-install"]
   }
 
   file{ "/home/vagrant/.vim":
@@ -50,6 +61,6 @@ class vim {
     owner => "vagrant",
     group => "vagrant",
     mode => 644,
-    require => Exec["vundle"]
+    require => Exec["clone-vundle"]
   }
 }
