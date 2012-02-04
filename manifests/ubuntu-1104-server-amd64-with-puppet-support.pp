@@ -45,9 +45,13 @@ class vim {
     require => Package["git"]
   }
 
-  exec{ "vundle-bundle-install":
-    command => "/usr/bin/vim -c :BundleInstall -c :q -c :q",
-    require => Exec["clone-vundle"]
+  exec { "vundle-bundle-install":
+    command => "/bin/su -l vagrant -c '/usr/bin/vim +BundleInstall +qall'",
+    require => [
+      Package["vim-nox"],
+      Exec["clone-vundle"],
+      Exec["vimrc"]
+    ]
   }
 
   exec{ "compile-command-t":
