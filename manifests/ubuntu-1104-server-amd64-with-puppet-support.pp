@@ -7,6 +7,7 @@ class basenode {
   include git
   include tmux
   include vim
+  include mongodb
 }
 include basenode
 
@@ -66,5 +67,11 @@ class vim {
     group => "vagrant",
     mode => 644,
     require => Exec["clone-vundle"]
+  }
+}
+
+class mongodb {
+  package{ "mongodb":
+    ensure => present
   }
 }
