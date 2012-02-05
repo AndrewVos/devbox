@@ -8,6 +8,7 @@ class basenode {
   include tmux
   include vim
   include mongodb
+  include ruby
 }
 include basenode
 
