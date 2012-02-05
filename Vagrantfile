@@ -11,6 +11,6 @@ Vagrant::Config.run do |config|
 
   config.vm.provision :puppet do |puppet|
     puppet.manifests_path = "manifests"
-    puppet.manifest_file  = "ubuntu-1104-server-amd64-with-puppet-support.pp"
+    puppet.manifest_file  = "base.pp"
   end
 end
