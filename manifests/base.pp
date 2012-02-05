@@ -3,7 +3,6 @@ group { "puppet":
 }
 
 class basenode {
-  include motd
   include aptitude_update
   include git
   include tmux
@@ -18,9 +17,3 @@ Package {
 }
 
 File { owner => 0, group => 0, mode => 0644 }
-
-class motd {
-  file { '/etc/motd':
-    content => "Welcome to Vos's Dev Box"
-  }
-}
