@@ -11,3 +11,10 @@ git clone https://AndrewVos@github.com/AndrewVos/devbox.git
 cd devbox
 vagrant up
 ```
+
+Usage
+-----
+
+```
+vagrant ssh
+```
