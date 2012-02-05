@@ -4,6 +4,7 @@ group { "puppet":
 
 class basenode {
   include motd
+  include aptitude_update
   include git
   include tmux
   include vim
@@ -11,6 +12,10 @@ class basenode {
   include ruby
 }
 include basenode
+
+Package {
+  require => Class[aptitude_update]
+}
 
 File { owner => 0, group => 0, mode => 0644 }
 
