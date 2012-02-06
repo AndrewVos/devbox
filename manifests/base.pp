@@ -9,6 +9,7 @@ class basenode {
   include vim
   include mongodb
   include ruby
+  include headless-browsing
 }
 include basenode
 
